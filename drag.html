@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Drag And Drop</title>
+	<style>
+		div{
+			width: 300px;
+			height: 300px;
+			border:2px solid;
+			display: inline-block;
+			padding: 20px;
+			margin:20px;
+			text-align:center;
+			box-sizing: border-box;
+		}
+		img{
+			display: inline-block;
+		}
+	</style>
+	<script>
+		function drag(ev){
+			ev.dataTransfer.setData("text",ev.target.id);
+		}
+		function allowDrop(ev){
+			ev.preventDefault();
+		}
+		function drop(ev){
+			ev.preventDefault();
+			var data = ev.dataTransfer.getData("text");
+			ev.target.appendChild(document.getElementById(data));
+		}
+	</script>
+</head>
+<body>
+	<div id="conatiner" ondragover="allowDrop(event)" ondrop="drop(event)" ></div>
+	<div id="conatiner1" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+	<div id="conatiner2" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+	<div id="conatiner2" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+	<br>
+	<center>
+	<label>Drag Below Image And Place in any box:-</label>
+	<br><br>
+	<img src="music.png" id="image" width="200px" height="260px" alt="" draggable="true" ondragstart="drag(event)">
+	</center>
+</body>
+</html>
